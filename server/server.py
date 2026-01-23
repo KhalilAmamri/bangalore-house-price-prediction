@@ -1,4 +1,10 @@
 from flask import Flask, jsonify, request
+import sys
+import os
+
+# Add server directory to path so util can be imported
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 import util
 
 app = Flask(__name__)
