@@ -1,6 +1,7 @@
 import json
 import pickle
 import warnings
+import os
 
 warnings.filterwarnings('ignore')
 
@@ -34,13 +35,20 @@ def load_saved_artifacts():
     global __locations
     global __model
 
-    with open("./models/columns.json", "r") as f:
+    # Get absolute paths - works everywhere
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_dir = os.path.dirname(script_dir)
+    
+    columns_path = os.path.join(project_dir, 'models', 'columns.json')
+    model_path = os.path.join(project_dir, 'models', 'house_price_model.pkl')
+
+    with open(columns_path, "r") as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
 
-    with open("./models/house_price_model.pkl", "rb") as f:
+    with open(model_path, "rb") as f:
         __model = pickle.load(f)
-    print("Loading saved artifacts...done")
+    print("✓ Loading saved artifacts...done")
 
 
 if __name__ == '__main__':
