@@ -1,5 +1,5 @@
 // API Base URL
-const API_URL = 'http://127.0.0.1:5000';
+const API_URL = 'https://bangalore-house-price-predictor-hr8e.onrender.com';
 
 // DOM Elements
 const form = document.getElementById('priceForm');
