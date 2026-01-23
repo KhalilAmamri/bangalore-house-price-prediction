@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore House Price Predictor</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Bangalore House Price Predictor</h1>
+            <p class="subtitle">Get instant price estimates for properties in Bangalore</p>
+        </header>
+
+        <div class="card">
+            <form id="priceForm">
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <select id="location" name="location" required>
+                        <option value="">Select a location...</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sqft">Total Area (sq ft)</label>
+                        <input 
+                            type="number" 
+                            id="sqft" 
+                            name="sqft" 
+                            placeholder="e.g., 1000" 
+                            min="300" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bhk">BHK</label>
+                        <select id="bhk" name="bhk" required>
+                            <option value="">Select BHK</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6+</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bath">Bathrooms</label>
+                        <select id="bath" name="bath" required>
+                            <option value="">Select Bath</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="predictBtn">
+                    <span id="btnText">Estimate Price</span>
+                    <span id="btnLoader" class="loader" style="display: none;"></span>
+                </button>
+            </form>
+        </div>
+
+        <div id="result" class="result-card" style="display: none;">
+            <div class="result-header">
+                <h2>Estimated Price</h2>
+            </div>
+            <div class="result-body">
+                <div class="price-display">
+                    <span class="currency">₹</span>
+                    <span id="priceValue" class="price-value">0</span>
+                    <span class="unit">Crores</span>
+                </div>
+                <div class="result-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Location:</span>
+                        <span id="resultLocation" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Area:</span>
+                        <span id="resultSqft" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Configuration:</span>
+                        <span id="resultConfig" class="detail-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="error" class="error-card" style="display: none;">
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Built with Machine Learning | Data from Bengaluru Housing Market</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
