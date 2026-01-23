@@ -65,5 +65,5 @@ Thumbs.db
 # Project specific
 *.pkl
 *.joblib
-*.model
+# *.model
 models/trained_models/
