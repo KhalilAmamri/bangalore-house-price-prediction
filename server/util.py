@@ -35,13 +35,15 @@ def load_saved_artifacts():
     global __locations
     global __model
 
-    # Get absolute paths - works everywhere
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_dir = os.path.dirname(script_dir)
+    # Use absolute path from current file location
+    current_dir = os.path.dirname(os.path.abspath(__file__))  # /server
+    models_dir = os.path.join(current_dir, '..', 'models')    # Go up to /models
     
-    columns_path = os.path.join(project_dir, 'models', 'columns.json')
-    model_path = os.path.join(project_dir, 'models', 'house_price_model.pkl')
-
+    columns_path = os.path.join(models_dir, 'columns.json')
+    model_path = os.path.join(models_dir, 'house_price_model.pkl')
+    
+    print(f"Looking for files at: {columns_path}")
+    
     with open(columns_path, "r") as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
