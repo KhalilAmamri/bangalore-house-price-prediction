@@ -37,19 +37,33 @@ def load_saved_artifacts():
 
     # Use absolute path from current file location
     current_dir = os.path.dirname(os.path.abspath(__file__))  # /server
-    models_dir = os.path.join(current_dir, '..', 'models')    # Go up to /models
+    models_dir = os.path.normpath(os.path.join(current_dir, '..', 'models'))  # Normalize the path
     
     columns_path = os.path.join(models_dir, 'columns.json')
     model_path = os.path.join(models_dir, 'house_price_model.pkl')
     
-    print(f"Looking for files at: {columns_path}")
+    print(f"Looking for columns.json at: {columns_path}")
+    print(f"File exists: {os.path.exists(columns_path)}")
+    print(f"Looking for model at: {model_path}")
+    print(f"File exists: {os.path.exists(model_path)}")
     
-    with open(columns_path, "r") as f:
-        __data_columns = json.load(f)['data_columns']
-        __locations = __data_columns[3:]
+    try:
+        with open(columns_path, "r") as f:
+            __data_columns = json.load(f)['data_columns']
+            __locations = __data_columns[3:]
+            print(f"✓ Loaded {len(__locations)} locations")
+    except Exception as e:
+        print(f"✗ Error loading columns: {e}")
+        raise
 
-    with open(model_path, "rb") as f:
-        __model = pickle.load(f)
+    try:
+        with open(model_path, "rb") as f:
+            __model = pickle.load(f)
+            print("✓ Model loaded successfully")
+    except Exception as e:
+        print(f"✗ Error loading model: {e}")
+        raise
+    
     print("✓ Loading saved artifacts...done")
 
 
