@@ -63,7 +63,7 @@ venv.bak/
 Thumbs.db
 
 # Project specific
-*.pkl
-*.joblib
+# *.pkl
+# *.joblib
 # *.model
-models/trained_models/
+# models/trained_models/
